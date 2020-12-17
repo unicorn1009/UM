@@ -136,7 +136,7 @@ public class CodeGenerator {
         //生成策略的配置
         StrategyConfig strategyConfig = new StrategyConfig();
         //生成指定表
-        strategyConfig.setInclude(new String[]{"t_sys_user"});
+        strategyConfig.setInclude(new String[]{"t_common_user"});
         //可变参数用数组，最好再模板里把它注释掉
         //        strategyConfig.setTablePrefix(new String[]{""});
         //驼峰命名
@@ -146,6 +146,8 @@ public class CodeGenerator {
         //设置实体Bean的lombok
         strategyConfig.setEntityLombokModel(true);
         strategyConfig.setRestControllerStyle(true);
+        strategyConfig.setTablePrefix("t_common_");
+
         //设置生成策略
         mpg.setStrategy(strategyConfig);
 
