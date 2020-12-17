@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.unicorn.um.mapper")
+//@MapperScan("com.unicorn.um.mapper")        // 挪到了配置类上
 public class UmApplication {
 
     public static void main(String[] args) {

@@ -4,6 +4,16 @@ spring:
     url: jdbc:mysql://localhost:3306/ume?serverTimezone=GMT%2B8
     username: root
     password: 123456
+  profiles:
+    active: dev # 环境设置（dev test prod）
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+server:
+  port: 8080  # 端口
+
+
 
 # mybatis日志
 mybatis-plus:

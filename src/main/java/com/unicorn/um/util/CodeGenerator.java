@@ -1,5 +1,7 @@
 package com.unicorn.um.util;
 
+import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
@@ -7,9 +9,12 @@ import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
+import com.baomidou.mybatisplus.generator.config.rules.FileType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -43,23 +48,27 @@ public class CodeGenerator {
         String projectPath = System.getProperty("user.dir");
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("unicorn");
-        gc.setOpen(false);
-        // gc.setSwagger2(true); 实体属性 Swagger2 注解
+        gc.setOpen(false);   // 生成后是否打开文件夹
+        gc.setFileOverride(true);    // 生成代码时是否覆盖已有文件
+        gc.setIdType(IdType.ASSIGN_ID); // 选择主键策略
+        gc.setDateType(DateType.ONLY_DATE); // 生成实体中的时间类型，默认为LocalDateTime，设置该值后则改为Date类型
+//         gc.setSwagger2(true);      // 实体属性 Swagger2 注解
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/ume?serverTimezone=UTC&useUnicode=true&useSSL=false&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://localhost:3306/ume?serverTimezone=GMT%2B8&useUnicode=true&useSSL=false&characterEncoding=utf8");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
+        dsc.setDbType(DbType.MYSQL);
         mpg.setDataSource(dsc);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName(scanner("模块名"));
         pc.setParent("com.unicorn");
+        pc.setModuleName(scanner("模块名"));
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -69,11 +78,34 @@ public class CodeGenerator {
                 // to do nothing
             }
         };
+//        // 覆盖已生成代码
+//        InjectionConfig cfg = new InjectionConfig() {
+//            @Override
+//            public void initMap() {
+//                // to do nothing
+//            }
+//        };
+//        cfg.setFileCreate((configBuilder, fileType, filePath) -> {
+//            //如果是Entity则直接返回true表示写文件
+//            if (fileType == FileType.ENTITY) {
+//                return true;
+//            }
+//            //否则先判断文件是否存在
+//            File file = new File(filePath);
+//            boolean exist = file.exists();
+//            if (!exist) {
+//                file.getParentFile().mkdirs();
+//            }
+//            //文件不存在或者全局配置的fileOverride为true才写文件
+//            return !exist || configBuilder.getGlobalConfig().isFileOverride();
+//        });
 
-        // 如果模板引擎是 freemarker
-//        String templatePath = "/templates/mapper.xml.ftl";
+
+
         // 如果模板引擎是 velocity
          String templatePath = "/templates/mapper.xml.vm";
+        // 如果模板引擎是 freemarker
+        // String templatePath = "/templates/mapper.xml.ftl";
 
         // 自定义输出配置
         List<FileOutConfig> focList = new ArrayList<>();
