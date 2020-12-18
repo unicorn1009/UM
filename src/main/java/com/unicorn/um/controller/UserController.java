@@ -2,6 +2,7 @@ package com.unicorn.um.controller;
 
 
 import com.unicorn.um.common.R;
+import com.unicorn.um.common.UmeException;
 import com.unicorn.um.entity.User;
 import com.unicorn.um.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,17 @@ public class UserController {
     private UserServiceImpl userService;
 
     @GetMapping("allUser")
-    public R findAllUser()
-    {
+    public R findAllUser() {
 
         // 调用Service中的方法
-        List<User> userList = userService.list(null);
+        try {
+            List<User> userList = userService.list(null);
+            return R.ok().data("Users", userList);
 
-        return R.ok().data("Users", userList);
+        } catch (Exception e) {
+            throw new UmeException(20001, "获取失败");
+        }
+
     }
 
     // 传参方式
@@ -41,8 +46,6 @@ public class UserController {
         User user = new User();
         user.setId(id);
         user.setIsEnable(0);
-
-
         return userService.updateById(user) ? R.ok().message("删除成功"): R.error().message("删除失败");
     }
 
