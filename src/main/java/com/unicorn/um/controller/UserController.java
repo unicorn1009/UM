@@ -7,6 +7,7 @@ import com.unicorn.um.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,6 +44,16 @@ public class UserController {
 
 
         return userService.updateById(user) ? R.ok().message("删除成功"): R.error().message("删除失败");
+    }
+
+
+    // 添加用户
+    @PostMapping("addUser")
+    public R addUser(@RequestBody User user)
+    {
+        user.setCreateTime(new Date());
+        user.setUpdateTime(new Date());
+        return userService.save(user) ? R.ok().message("添加成功").data("user", user) : R.error().message("添加失败");
     }
 
 }
