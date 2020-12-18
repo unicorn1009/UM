@@ -2,6 +2,7 @@ package com.unicorn.um.mapper;
 
 import com.unicorn.um.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Component;
 
 /**
  * <p>
@@ -9,8 +10,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author unicorn
- * @since 2020-12-17
+ * @since 2020-12-18
  */
+@Component
 public interface UserMapper extends BaseMapper<User> {
 
 }

@@ -1,6 +1,7 @@
 package com.unicorn.um.controller;
 
 
+import com.unicorn.um.common.R;
 import com.unicorn.um.entity.User;
 import com.unicorn.um.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import java.util.List;
  * </p>
  *
  * @author unicorn
- * @since 2020-12-17
+ * @since 2020-12-18
  */
 @RestController     // 组合注解，可返回json数据
 @RequestMapping("/um/user")
@@ -24,21 +25,24 @@ public class UserController {
     private UserServiceImpl userService;
 
     @GetMapping("allUser")
-    public List<User> findAllUser()
+    public R findAllUser()
     {
+
         // 调用Service中的方法
         List<User> userList = userService.list(null);
-        return userList;
+
+        return R.ok().data("Users", userList);
     }
 
     // 传参方式
     @DeleteMapping("{id}")
-    public boolean DeleteUser(@PathVariable Long id) {
+    public R DeleteUser(@PathVariable String id) {
         User user = new User();
         user.setId(id);
         user.setIsEnable(0);
 
-        return userService.updateById(user);
+
+        return userService.updateById(user) ? R.ok().message("删除成功"): R.error().message("删除失败");
     }
 
 }

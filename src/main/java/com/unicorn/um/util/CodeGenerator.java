@@ -50,7 +50,7 @@ public class CodeGenerator {
         gc.setAuthor("unicorn");
         gc.setOpen(false);   // 生成后是否打开文件夹
         gc.setFileOverride(true);    // 生成代码时是否覆盖已有文件
-        gc.setIdType(IdType.ASSIGN_ID); // 选择主键策略
+        gc.setIdType(IdType.ASSIGN_UUID); // 选择主键策略
         gc.setDateType(DateType.ONLY_DATE); // 生成实体中的时间类型，默认为LocalDateTime，设置该值后则改为Date类型
 //         gc.setSwagger2(true);      // 实体属性 Swagger2 注解
         mpg.setGlobalConfig(gc);

@@ -37,10 +37,12 @@ class UmApplicationTests {
     void addUser()
     {
         User user = new User();
-        user.setAge(10);
-        user.setPhone("123");
-        user.setPassword("12345");
+        user.setUsername("麻子");
+        user.setAge(20);
+        user.setPhone("2352");
+        user.setPassword("123456");
         user.setCreateTime(new Date());
+        user.setUpdateTime(new Date());
         int insert = userMapper.insert(user);
         System.out.println("insert:"+insert);
 
