@@ -31,21 +31,35 @@ class UmApplicationTests {
         System.out.println(userList);
     }
 
+    // 测试逻辑删除
+    @Test
+    void deleteLogic(){
+        int i = userMapper.deleteById(1);
+        System.out.println(i);
+    }
 
-//    @Test
-//    void addUser()
-//    {
-//        User user = new User();
-//        user.setUsername("麻子");
-//        user.setAge(20);
-//        user.setPhone("2352");
-//        user.setPassword("123456");
-//        user.setCreateTime(new Date());
-//        user.setUpdateTime(new Date());
-//        int insert = userMapper.insert(user);
-//        System.out.println("insert:"+insert);
-//
-//    }
+    // 测试时间自动填充
+    @Test
+    void autoFill(){
+        User user = new User();
+        user.setId(1L);
+        user.setIsDisabled(true);
+        int i = userMapper.updateById(user);
+        System.out.println(i);
+    }
+
+
+    @Test
+    void addUser()
+    {
+        User user = new User();
+        user.setUsername("麻子");
+        user.setAge(20);
+        user.setPassword("123456");
+        int insert = userMapper.insert(user);
+        System.out.println("insert:"+insert);
+
+    }
 
 //    @Test
 //    void updateUser()

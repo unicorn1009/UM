@@ -1,16 +1,15 @@
 package com.unicorn.um.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author unicorn
@@ -55,7 +54,7 @@ public class User implements Serializable {
     private Integer age;
 
     /**
-     * 性别
+     * 性别（0：女，1：男）
      */
     private Integer gender;
 
@@ -70,23 +69,26 @@ public class User implements Serializable {
     private String sign;
 
     /**
-     * 逻辑删除
+     * 逻辑删除（0:正常，1：删除）
      */
+    @TableLogic     // 逻辑删除注解
     private Boolean isDeleted;
 
     /**
-     * 是否禁用
+     * 是否禁用（0:正常，1：禁用）
      */
     private Boolean isDisabled;
 
     /**
      * 创建时间
      */
+    @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 
     /**
      * 更新时间
      */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
 
 
