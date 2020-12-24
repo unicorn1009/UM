@@ -1,6 +1,9 @@
 package com.unicorn.um.controller;
 
 import com.unicorn.um.common.R;
+import com.unicorn.um.mapper.UserMapper;
+import com.unicorn.um.service.impl.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +15,7 @@ import java.util.Locale;
 @RestController
 @CrossOrigin
 public class LoginController {
+
 
     @PostMapping("/login")
     public R login(@RequestBody Object obj) {
