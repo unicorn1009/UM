@@ -2,17 +2,17 @@ package com.unicorn.um.mapper;
 
 import com.unicorn.um.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.springframework.stereotype.Component;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author unicorn
- * @since 2020-12-18
+ * @since 2020-12-24
  */
-@Component
+@Mapper
 public interface UserMapper extends BaseMapper<User> {
 
 }

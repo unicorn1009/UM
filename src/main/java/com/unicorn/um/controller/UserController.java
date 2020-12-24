@@ -42,22 +42,23 @@ public class UserController {
 
     // 传参方式
     @DeleteMapping("{id}")
-    public R DeleteUser(@PathVariable String id) {
+    public R DeleteUser(@PathVariable Long id) {
         User user = new User();
         user.setId(id);
-        user.setIsEnable(0);
-        return userService.updateById(user) ? R.ok().message("删除成功"): R.error().message("删除失败");
+        user.setIsDeleted(true);
+        return userService.updateById(user) ? R.ok().message("删除成功") : R.error().message("删除失败");
     }
 
 
     // 添加用户
     @PostMapping("addUser")
-    public R addUser(@RequestBody User user)
-    {
-        user.setCreateTime(new Date());
-        user.setUpdateTime(new Date());
+    public R addUser(@RequestBody User user) {
+        user.setGmtCreate(new Date());
+        user.setGmtModified(new Date());
         return userService.save(user) ? R.ok().message("添加成功").data("user", user) : R.error().message("添加失败");
     }
 
 }
+
+
 
