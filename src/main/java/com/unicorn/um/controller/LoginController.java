@@ -29,11 +29,4 @@ public class LoginController {
 
     }
 
-    @GetMapping("getUserInfo")
-    public R getUserInfo(HttpServletRequest request){
-        String userId = JwtUtils.getUserIdByJwtToken(request);
-        // 查数据库
-        User user = userService.getById(userId);
-        return R.ok().data("userInfo",user);
-    }
 }

@@ -7,7 +7,7 @@ import com.unicorn.um.mapper.UserMapper;
 import com.unicorn.um.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.unicorn.um.util.JwtUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 /**

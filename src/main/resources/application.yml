@@ -10,10 +10,10 @@ spring:
   application:
     name: ume-server  # nacos服务注册时的名称
 
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 192.168.1.103:8848
+  #  cloud:
+  #    nacos:
+  #      discovery:
+  #        server-addr: 192.168.1.103:8848
 
   # 返回json数据中的时间格式
   jackson:
